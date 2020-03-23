@@ -1,4 +1,4 @@
-##7 zasad Testowania
+## 7 zasad Testowania
 
 1. Testowanie ujawnia usterki, ale nie może dowieść ich braku
     - Testowanie może wykazać obecność defektów, ale nie może dowieść, że oprogramowanie jest od nich wolne.
