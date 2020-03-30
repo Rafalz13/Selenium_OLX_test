@@ -1,20 +1,23 @@
 ## 7 zasad Testowania
 
 1. Testowanie ujawnia usterki, ale nie może dowieść ich braku
-    - Testowanie może wykazać obecność defektów, ale nie może dowieść, że oprogramowanie jest od nich wolne.
+    - Testowanie może wykazać obecność defektów, ale nie może dowieść, że oprogramowanie jest od nich wolne. Wyjątkiem mogą być proste aplikacje 
+      które posiadają nieskomplikowane funkcje.
 2. Testowanie gruntowne jest niemożliwe
     - Przetestowanie wszystkiego (tj. wszystkich kombinacji danych wejściowych i warunków wstępnych) jest możliwe tylko w najprostszych przypadkach.
+      Dokładne testowanie pochłnia za dużo czasu oraz zasobów.
 3. Wczesne testowanie oszczędza czas i pieniądze
-    - Wykonywanie testów na wczesnym etapie cyklu życia oprogramowania pozwala ograniczyć lub wyeliminować kosztowne zmiany.
+    - Wykonywanie testów na wczesnym etapie cyklu życia oprogramowania pozwala ograniczyć lub wyeliminować kosztowne zmiany. Na początku poprawa błędu
+      Nie angażuje wielu ludzi i nie zajmuje wile czasu, ponieważ projekt nie jest jeszcze rozbudowany.
 4. Kumulowanie się defektów
-    - Zwykle większość defektów wykrytych podczas testowania przed przekazaniem oprogramowania do eksploatacji lub większość awarii występujących w fazie eksploatacji 
-      występuje lub ma swoje źródło w niewielkiej liczbie modułów.
+    - Zwykle większość defektów wykrytych podczas testowania przed przekazaniem oprogramowania do eksploatacji lub większość awarii występujących 
+      w fazie eksploatacji występuje lub ma swoje źródło w niewielkiej liczbie modułów. Czasem przez błąd w jednym module kumulują nam się blędy w innych modulach. 
 5. Paradoks pestycydów
-    - Ciągłe powtarzanie tych samych testów prowadzi do sytuacji, w której przestają one w pewnym momencie wykrywać nowe defekty. Aby móc wykrywać nowe defekty, 
-      może być konieczne zmodyfikowanie dotychczasowych testów i danych testowych, a także napisanie nowych testów.
+    - Ciągłe powtarzanie tych samych testów prowadzi do sytuacji, w której przestają one w pewnym momencie wykrywać nowe defekty. 
+      Aby móc wykrywać nowe defekty, może być konieczne zmodyfikowanie dotychczasowych testów i danych testowych, a także napisanie nowych testów.
 6. Testowanie zależy od kontekstu
     - Testowanie wykonuje się w różny sposób w różnych kontekstach. Na przykład oprogramowanie sterujące systemami przemysłowymi,
       które jest krytyczne ze względów bezpieczeństwa, testuje się inaczej niż aplikację mobilną sklepu internetowego.
 7. Przekonanie o braku błędów jest błędem
-    - Bardzo dokładne testowanie wszystkich wyspecyfikowanych wymagań i naprawienie wszystkich znalezionych defektów wciąż może nas nie uchronić od zbudowania systemu 
-      trudnego w obsłudze, który nie spełni wymagań i oczekiwań użytkowników lub będzie miał gorsze parametry od konkurencyjnych rozwiązań.
+    - Bardzo dokładne testowanie wszystkich wyspecyfikowanych wymagań i naprawienie wszystkich znalezionych defektów wciąż może nas nie uchronić od 
+      zbudowania systemu trudnego w obsłudze, który nie spełni wymagań i oczekiwań użytkowników lub będzie miał gorsze parametry od konkurencyjnych rozwiązań.
