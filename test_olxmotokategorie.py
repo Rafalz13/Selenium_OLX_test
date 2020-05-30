@@ -20,76 +20,43 @@ class TestOlxmotokategorie():
         self.driver.quit()
 
     def test_olxmotokategorie(self):
+
         self.driver.get("https://www.olx.pl/")
         self.driver.set_window_size(1552, 840)
-        time.sleep(2)
-
+        time.sleep(1)
         self.driver.find_element(By.CSS_SELECTOR, ".cat-icon-5").click()
-        time.sleep(2)
+        time.sleep(1)
         self.driver.find_element(By.CSS_SELECTOR, "#bottom5 > ul:nth-child(2) > li:nth-child(1) > a:nth-child(1)").click()
         time.sleep(2)
         self.driver.find_element_by_xpath( "/html/body/div[3]/header/div[2]/div/form/noindex/div/fieldset[2]/ul/li[1]/ul/li[1]/div[2]/a").click()
         time.sleep(3)
         self.driver.find_element_by_xpath("/html/body/div[3]/header/div[2]/div/form/noindex/div/fieldset[2]/ul/li[1]/ul/li[1]/div[2]/ul/li[3]/a").click()
-
-        time.sleep(2)
-        assert self.driver.find_element_by_xpath("/html/body/div[3]/div[6]/section/div[1]/div[1]/div[1]/ul/li[4]").text\
-            == "Używane Alfa Romeo sprzedam - OLX.pl"
-        time.sleep(2)
-        self.driver.find_element(By.CSS_SELECTOR, ".category > .icon").click()
-        time.sleep(2)
-        element = self.driver.find_element(By.CSS_SELECTOR, ".category > .icon")
-        time.sleep(2)
-        actions = ActionChains(self.driver)
-        time.sleep(2)
-        actions.move_to_element(element).perform()
-        #element = self.driver.find_element(By.CSS_SELECTOR, "body")
-
-        #actions = ActionChains(self.driver)
-        #actions.move_to_element(element, 0, 0).perform()
-        self.driver.find_element_by_xpath("/html/body/div[3]/header/div[2]/div/form/noindex/div/fieldset[2]/ul/li[1]/ul/li[1]/div[2]/a/span[1]").click()
-        time.sleep(2)
-        self.driver.find_element_by_xpath("/html/body/div[3]/header/div[2]/div/form/noindex/div/fieldset[2]/ul/li[1]/ul/li[1]/div[2]/ul/li[3]/a").click()
-        time.sleep(2)
-        elements = self.driver.find_elements(By.CSS_SELECTOR, ".fnormal:nth-child(2)")
-        assert len(elements) > 0
-        time.sleep(2)
-        self.driver.find_element_by_xpath("//*[@id='headerLogo']").click()
         time.sleep(1)
-        self.driver.execute_script("window.scrollTo(0,440)")
+        assert self.driver.find_element_by_xpath("/html/body/div[3]/div[5]/section/div[1]/div[1]/div[1]/ul/li[4]/h1").text == "Używane Alfa Romeo sprzedam - OLX.pl"
+        time.sleep(1)
+        self.driver.get("https://www.olx.pl/")
         time.sleep(1)
         self.driver.find_element(By.CSS_SELECTOR, ".cat-icon-5").click()
         time.sleep(1)
-        self.driver.find_element(By.CSS_SELECTOR, ".fleft:nth-child(2) > .cat-5 > .link > span").click()
-        time.sleep(1)
-        self.driver.find_element(By.CSS_SELECTOR, ".category > .icon").click()
-        time.sleep(1)
-        self.driver.find_element(By.CSS_SELECTOR, ".filter-item-mark .icon").click()
-        time.sleep(1)
-        self.driver.find_element(By.CSS_SELECTOR, ".dynamic:nth-child(8) > .select-only-this-option").click()
-        time.sleep(1)
-        self.driver.find_element(By.CSS_SELECTOR, ".fnormal:nth-child(2)").click()
-        time.sleep(1)
-        elements = self.driver.find_elements(By.CSS_SELECTOR, ".fnormal:nth-child(2)")
-        time.sleep(21)
-        assert len(elements) > 0
+        self.driver.find_element(By.CSS_SELECTOR,"#bottom5 > ul:nth-child(2) > li:nth-child(2) > a:nth-child(1)").click()
         time.sleep(2)
-        self.driver.find_element(By.ID, "cityField").click()
-        self.driver.find_element(By.ID, "a-region-4").click()
-        self.driver.find_element(By.CSS_SELECTOR, ".selected:nth-child(3)").click()
-        self.driver.find_element(By.CSS_SELECTOR, ".fnormal:nth-child(2)").click()
-        self.driver.find_element(By.CSS_SELECTOR, ".fnormal:nth-child(2)").click()
-        elements = self.driver.find_elements(By.CSS_SELECTOR, ".fnormal:nth-child(2)")
-        assert len(elements) > 0
-        element = self.driver.find_element(By.ID, "search-text")
-        assert element.is_enabled() is True
+
+        self.driver.find_element_by_xpath("/html/body/div[3]/header/div[2]/div/form/noindex/div/fieldset[2]/ul/li[1]/ul/li[2]/div[2]/a").click()
+        time.sleep(3)
+        self.driver.find_element_by_xpath("/html/body/div[3]/header/div[2]/div/form/noindex/div/fieldset[2]/ul/li[1]/ul/li[2]/div[2]/ul/li[44]/label[2]").click()
+        woj = self.driver.find_element_by_xpath('//*[@id="cityField"]')
+        woj.click()
+        time.sleep(2)
+        self.driver.find_element_by_xpath("/html/body/div[3]/header/div[2]/div/form/fieldset/div/noindex/table/tbody/tr/td[2]/div/div/div/div[4]/ul/li[1]/a").click()
+        time.sleep(1)
+        assert self.driver.find_element_by_xpath(
+            "/html/body/div[3]/div[5]/section/div[1]/div[1]/div[1]/ul/li[3]/h1").text == "Małopolskie Używane motocykle i skutery sprzedam - OLX.pl"
+
         self.driver.find_element(By.ID, "search-text").send_keys("opel astra")
         self.driver.find_element(By.ID, "search-submit").click()
         self.driver.execute_script("window.scrollTo(0,544)")
-        self.driver.find_element(By.CSS_SELECTOR, ".emptynew").click()
-        self.driver.find_element(By.CSS_SELECTOR, ".emptynew").click()
-        elements = self.driver.find_elements(By.CSS_SELECTOR, "q")
-        assert len(elements) > 0
+        time.sleep(4)
+        assert self.driver.find_elements_by_xpath("/html/body/div[3]/div[5]/section/div[2]/div/div[3]/span[3]").text == "nowe ogłoszenia na pewno się pojawią"
 
 
 if __name__ == '__main__':
