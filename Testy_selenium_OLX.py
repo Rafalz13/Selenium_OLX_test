@@ -56,7 +56,7 @@ class TestLogowanie():
         log = self.driver.find_element_by_xpath('//*[@id="userEmail"]')
         log.send_keys("login")
         passw = self.driver.find_element_by_xpath('//*[@id="userPass"]')
-        passw.send_keys('pass')
+        passw.send_keys('passw')
 
         loguj_button = self.driver.find_element_by_xpath('//*[@id="se_userLogin"]')
         loguj_button.click()
@@ -111,7 +111,6 @@ class TestOferta():
 
 
 class TestKategorie():
-
     def setup_method(self, method):
         self.driver = webdriver.Chrome()
         self.vars = {}
@@ -119,7 +118,7 @@ class TestKategorie():
     def teardown_method(self, method):
         self.driver.quit()
 
-    def test_kategorie_auta(self):
+    def test_model_auta(self):
         self.driver.get("https://www.olx.pl/")
         self.driver.set_window_size(1552, 840)
         time.sleep(1)
@@ -128,13 +127,17 @@ class TestKategorie():
         self.driver.find_element(By.CSS_SELECTOR,
                                  "#bottom5 > ul:nth-child(2) > li:nth-child(1) > a:nth-child(1)").click()
         time.sleep(2)
-        self.driver.find_element_by_xpath(
-            "/html/body/div[3]/header/div[2]/div/form/noindex/div/fieldset[2]/ul/li[1]/ul/li[1]/div[2]/a").click()
+        model = self.driver.find_element_by_xpath(
+            "/html/body/div[3]/header/div[2]/div/form/noindex/div/fieldset[2]/ul/li[1]/ul/li[1]/div[2]/a")
+        model.click()
         time.sleep(2)
         self.driver.find_element_by_xpath(
             "/html/body/div[3]/header/div[2]/div/form/noindex/div/fieldset[2]/ul/li[1]/ul/li[1]/div[2]/ul/li[3]/a").click()
+        time.sleep(1)
+        assert self.driver.find_element_by_xpath(
+            '/html/body/div[3]/div[5]/section/div[1]/div[1]/div[1]/ul/li[4]/h1').text == 'Używane Alfa Romeo sprzedam - OLX.pl'
 
-    def test_kategorie_moto(self):
+    def test_model_moto(self):
         self.driver.get("https://www.olx.pl/")
         time.sleep(1)
         self.driver.find_element(By.CSS_SELECTOR, ".cat-icon-5").click()
@@ -142,12 +145,74 @@ class TestKategorie():
         self.driver.find_element(By.CSS_SELECTOR,
                                  "#bottom5 > ul:nth-child(2) > li:nth-child(2) > a:nth-child(1)").click()
         time.sleep(2)
-        self.driver.find_element_by_xpath(
-            "/html/body/div[3]/header/div[2]/div/form/noindex/div/fieldset[2]/ul/li[1]/ul/li[2]/div[2]/a").click()
+        model = self.driver.find_element_by_xpath(
+            "/html/body/div[3]/header/div[2]/div/form/noindex/div/fieldset[2]/ul/li[1]/ul/li[2]/div[2]/a")
+        model.click()
         time.sleep(3)
         self.driver.find_element_by_xpath(
             "/html/body/div[3]/header/div[2]/div/form/noindex/div/fieldset[2]/ul/li[1]/ul/li[2]/div[2]/ul/li[44]/label[2]").click()
         time.sleep(2)
+        assert self.driver.find_element_by_xpath(
+            '/html/body/div[3]/div[5]/section/div[1]/div[1]/div[1]/ul/li[3]/h1').text \
+               == 'Używane motocykle i skutery sprzedam - OLX.pl'
+
+class TestFiltrowanie():
+
+    def setup_method(self, method):
+        self.driver = webdriver.Chrome()
+        self.vars = {}
+
+    def teardown_method(self, method):
+        self.driver.quit()
+
+    def test_filtr_polska(self):
+        self.driver.get("https://www.olx.pl/")
+        self.driver.set_window_size(1552, 840)
+        time.sleep(1)
+        motoryzacja = self.driver.find_element_by_xpath( "/html/body/div[3]/section[1]/div[1]/div/div[1]/div[1]/div/a/span[2]")
+        motoryzacja.click()
+        time.sleep(1)
+        samochod = self.driver.find_element_by_xpath("/html/body/div[3]/section[1]/div[1]/div/div[2]/ul/li[1]/a")
+        samochod.click()
+        time.sleep(2)
+        #filtry
+        kraj_poch = self.driver.find_element_by_xpath('/html/body/div[3]/header/div[2]/div/form/noindex/div/fieldset[2]/ul/li[9]/ul/li[2]/div[2]/a')
+        kraj_poch.click()
+        time.sleep(1)
+        self.driver.find_element_by_xpath(
+            '/html/body/div[3]/header/div[2]/div/form/noindex/div/fieldset[2]/ul/li[9]/ul/li[2]/div[2]/ul/li[2]/label[2]').click()
+        assert self.driver.find_element_by_xpath(
+            '/html/body/div[3]/header/div[2]/div/form/noindex/div/fieldset[2]/ul/li[9]/ul/li[2]/div[2]/a/span[1]').text == "Polska"
+
+    def test_filtr_cena(self, ):
+        self.driver.get("https://www.olx.pl/")
+        self.driver.set_window_size(1552, 840)
+        time.sleep(1)
+        motoryzacja = self.driver.find_element_by_xpath(
+                "/html/body/div[3]/section[1]/div[1]/div/div[1]/div[1]/div/a/span[2]")
+        motoryzacja.click()
+        time.sleep(1)
+        samochod = self.driver.find_element_by_xpath("/html/body/div[3]/section[1]/div[1]/div/div[2]/ul/li[1]/a")
+        samochod.click()
+        time.sleep(2)
+        cena_min = self.driver.find_element_by_xpath(
+            '/html/body/div[3]/header/div[2]/div/form/noindex/div/fieldset[2]/ul/li[2]/ul/li/div[2]/div[1]/a/span[1]')
+        cena_min.click()
+        self.driver.find_element_by_css_selector('ul.binded:nth-child(3) > li:nth-child(4) > a:nth-child(1)').click()
+        time.sleep(1)
+        cena_max = self.driver.find_element_by_xpath(
+            '/html/body/div[3]/header/div[2]/div/form/noindex/div/fieldset[2]/ul/li[2]/ul/li/div[2]/div[2]/a/span[1]')
+        cena_max.click()
+        self.driver.find_element_by_css_selector('ul.binded:nth-child(3) > li:nth-child(10) > a:nth-child(1)').click()
+        time.sleep(1)
+        sort = self.driver.find_element_by_xpath('/html/body/div[3]/div[5]/div[1]/div/div[1]/form/dl/dt/a')
+        sort.click()
+        self.driver.find_element_by_xpath('/html/body/div[3]/div[5]/div[1]/div/div[1]/form/dl/dd/ul/li[3]/a').click()
+        time.sleep(2)
+        cena_samoch = self.driver.find_element_by_xpath(
+            '/html/body/div[3]/div[5]/section/div[3]/div/div[1]/table[1]/tbody/tr[3]/td/div/table/tbody/tr[1]/td[3]/div/p/strong').text
+        cena_samoch = cena_samoch[0:2]
+        assert int(cena_samoch) >32
         
 
 if __name__ == '__main__':
