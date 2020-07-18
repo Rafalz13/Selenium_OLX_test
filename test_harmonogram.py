@@ -27,7 +27,7 @@ class TestOlxmotokategorie():
         time.sleep(2)
         assert self.driver.find_element_by_xpath("/html/body/div/div[4]/div/div/div/h1[1]").text == "STUDIA STACJONARNE I STOPNIA"
         assert self.driver.find_element_by_xpath("/html/body/div/div[4]/div/div/div/div[1]/table/tbody/tr[1]/td[3]").text == "III rok"
-        assert self.driver.find_element_by_xpath("/html/body/div/div[4]/div/div/div/div[1]/table/tbody/tr[2]/td[3]/ul/li/span[4]").text == "mgr Justyna Miazga"
+        assert self.driver.find_element_by_xpath("/html/body/div/div[4]/div/div/div/div[1]/table/tbody/tr[2]/td[3]/ul/li/span[4]").text == "mgr Imie Nazwisko"
         assert self.driver.find_element_by_xpath("/html/body/div/div[4]/div/div/div/div[1]/table/tbody/tr[2]/td[3]/ul/li/span[2]").text == "21.02.2020"
 
         assert self.driver.find_element_by_xpath("/html/body/div/div[4]/div/div/div/div[1]/table/tbody/tr[2]/td[3]/ul/li/div/a[2]").text == "Harmonogram"
